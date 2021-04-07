@@ -1,4 +1,5 @@
 library(shiny)
+library('tidyverse')
 
 #import data: data acquisition is performed once because of the YouTube API limit quota
 data <- read.csv(file = 'data/dataset_adjusted.csv')

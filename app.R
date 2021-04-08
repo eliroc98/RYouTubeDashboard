@@ -9,10 +9,6 @@ source("r_files\\utils.R")
 data <- read.csv(file = 'data/dataset_adjusted.csv')
 
 max_subs <- max(data$statistics_subscriberCount, na.rm=T)
-d<-data[1:10,]
-df<-data.frame(channel<-rep(d$snippet_title,2), count=c(d$statistics_subscriberCount,d$statistics_viewCount),count_type=c(rep("subscriberCount",nrow(d)),rep("viewCount",nrow(d))))
-ggplot(df, aes(x = channel,fill=count_type,y=count)) +
-    geom_col(position = position_dodge())
 
 ui <- fluidPage(
     theme = bs_theme(version = 4, bootswatch = "minty"),
@@ -60,6 +56,22 @@ ui <- fluidPage(
                          selected = 1),
             checkboxGroupInput("show_vars", "Variables to show:",
                                names(data), selected = c("snippet_title","statistics_viewCount","statistics_subscriberCount","statistics_videoCount")),
+        ),
+        conditionalPanel(
+            condition="input.tabset==4",
+            h3("Subscriber/View ratio"),
+            sliderInput("slider_channels",
+                        h4("Channels to display"),
+                        min = 1, max = 100, value = c(1, 5)),
+            br(),
+            br(),
+            br(),
+            br(),
+            br(),
+            br(),
+            h3("Channels Topics"),
+            checkboxGroupInput("topics", "Topics:",
+                               names(data[15:ncol(data)]), selected = c("Music","Gaming","Movies","Sports","Entertainment")),
         )),
 
         mainPanel(
@@ -67,6 +79,7 @@ ui <- fluidPage(
                         type = "tabs",
                         tabPanel("Insights", 
                                  plotOutput("insights_plot"),
+                                 plotOutput("topic_pie"),
                                  value=4),
                         tabPanel("Distribution Plot", 
                                  plotOutput("distribution_plot"),
@@ -78,7 +91,7 @@ ui <- fluidPage(
                         tabPanel("Dataset",
                                  DT::dataTableOutput("data_table"),
                                  value=3)
-        )
+            )
         )
     )
 )
@@ -114,6 +127,7 @@ server <- function(input, output) {
         return(table_sum)
     })
     
+    
     output$distribution_plot<-renderPlot({
         dt <- data_to_show()
         ggplot(dt, aes(x=statistics_subscriberCount))+
@@ -122,7 +136,8 @@ server <- function(input, output) {
             geom_vline(aes(xintercept=mean(statistics_subscriberCount, na.rm=T)),  
                        color="red", linetype="dashed", size=1)+
             geom_density(alpha=.2, fill="#FF6666")+
-            labs(title="Subscribers", x="Subscriber count", y="Density")
+            labs(title="Subscriber Count Distribution", x="Subscriber count", y="Density")+
+            theme(plot.title=element_text(size=20,face="bold"))
     })
     output$data_table = DT::renderDataTable({
         data_to_show_variables()
@@ -130,6 +145,39 @@ server <- function(input, output) {
     
     output$summary_stats = DT::renderDataTable({
         statistics_to_show()
+    })
+    
+    output$insights_plot = renderPlot({
+        d<-data[data$youtube_playlist==0 & data$id!="UCRv76wLBC73jiP7LX4C3l8Q",]
+        d<-d[input$slider_channels[1]:input$slider_channels[2],]
+        df<-data.frame(channel<-rep(d$snippet_title,2), count=c(d$statistics_subscriberCount,d$statistics_viewCount),count_type=c(rep("subscriberCount",nrow(d)),rep("viewCount",nrow(d))))
+        require(scales)
+        ggplot(df, 
+               aes(x = channel, fill=count_type,y=count)) +
+            theme(axis.text.x = element_text(angle = 90))+
+            geom_col(position = position_dodge())+
+            scale_y_continuous(trans = 'log2',
+                               breaks = trans_breaks("log2", function(x) 2^x),
+                               labels = trans_format("log2", math_format(2^.x)))+
+            labs(title="Subscriber/View Ratio")+ 
+            theme(plot.title=element_text(size=20,face="bold"))
+    })
+    
+    output$topic_pie = renderPlot({
+        d<-data %>%
+            select(input$topics)
+        print(names(d))
+        df_sums <- data.frame(topic="Music", count=sum(data$Music))
+        for(i in 1:ncol(d)){
+            df_sums <- rbind(df_sums,c(names(d)[i],sum(d[names(d)[i]])))
+        }
+        
+        ggplot(df_sums, aes(x = "", y = count, fill = topic)) +
+            geom_bar(width = 1, stat = "identity") +
+            coord_polar("y", start = 0)+
+            theme_void()+
+            labs(title="Channels Topics")+ 
+            theme(plot.title=element_text(size=20,face="bold"))
     })
     
 }

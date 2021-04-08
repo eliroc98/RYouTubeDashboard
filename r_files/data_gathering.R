@@ -19,10 +19,8 @@ res <- read_html(url) %>%
 clusterExport(clusters, c("res"))
 results <- parLapply(cl=clusters, 1:length(res), fun= function(x){
   strsplit(res[x],split="/")
-  })
 stopCluster(clusters)
-
-data <- data.frame(id = 0, 
+ data <- data.frame(id = 0, 
                    snippet_title = "", 
                    snippet_description = "",
                    snippet_country="",
@@ -35,8 +33,7 @@ data <- data.frame(id = 0,
                    statistics_videoCount = 0,
                    topicDetails_topicsIds = "",
                    topicDetails_topicCategories = "",
-                   stringsAsFactors=FALSE)
-
+                   stringsAsFactors=FALSE) })
 
 ch<-1
 username<-1

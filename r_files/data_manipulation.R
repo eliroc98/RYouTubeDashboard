@@ -29,6 +29,7 @@ cppFunction('List topicTranslation (DataFrame df){
 
 s<-topicTranslation(data)
 #______________________________
+
 for(i in 1:nrow(data)){
   split <- strsplit(data[i,]$topicDetails_topicsIds,split=" ")
   for(j in 1:length(split)){

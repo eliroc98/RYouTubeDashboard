@@ -1,5 +1,5 @@
 # RYouTubeDashboard
-R Shiny App visualizing information and insights about top 100 YouTube channels
+R Shiny App visualizing information and insights about top 100 YouTube channels.
 
 ## Index
 - [How to use RYouTubeDashboard](#How-to-use-RYouTubeDashboard)
@@ -11,18 +11,18 @@ R Shiny App visualizing information and insights about top 100 YouTube channels
 
 ## How to use RYouTubeDashboard
 
-1. Import `shiny` package
+1. Import `shiny` package;
 2. Type this command in your RStudio console: `runGitHub("RYouTubeDashboard", "eliroc98", "master")` .
 
 ### Insights Panel
-- Subscriber/View ratio plot: tweak the slider to select which channel to display. 
-- Channel Topics plot: choose which topic to include in the pie chart
+- Subscriber/View ratio plot: tweak the slider to select which channel to display;
+- Channel Topics plot: choose which topic to include in the pie chart.
 
 ### Distribution Plot Panel
-- Subscriber Count Distribution plot: choose which subset to display and tweak the slider to select channels having a specific number of subribers
+- Subscriber Count Distribution plot: choose which subset to display and tweak the slider to select channels having a specific number of subscribers.
 
 ### Summary Statistics Panel
-- Statistics Table: choose which subset to display, select which variable and statistic to show. Since bootstrapping technique is used, this operation could take some time (even if is is optimized using clusters)
+- Statistics Table: choose which subset to display, select which variable and statistic to show. Since bootstrapping technique is used, this operation could take some time (even if is is optimized using clusters).
 
 ### Dataset Panel
 - Dataset Table: choose which subset to display, select which variable to show.
@@ -46,22 +46,22 @@ To get the dataset, it is necessary to know which are the 100 most subscribed Yo
 The following procedure cannot be repeated every time the app starts because there are limits in [YouTube Data v3 API](https://developers.google.com/youtube/v3) quotas, thus it is not possible to run the data gathering procedure more than once in a day.
 Web scraping techniques are used to get the 100 most subscribed YouTube channels. This step is performed analysing a ranking list in [this](https://socialblade.com/youtube/top/100/mostsubscribed) website.
 Extracting information about each item in the ranking list it is possible to know either the channel Id or the username associated with a channel or a keyword referring to a channel. Depending on the information provided, it is necessary to perform three different API calls to [YouTube Data v3 API](https://developers.google.com/youtube/v3):
-- [`channel list()`](https://developers.google.com/youtube/v3/docs/channels/list) with channelId specification
-- [`channel list()`](https://developers.google.com/youtube/v3/docs/channels/list) with username specification
-- [`search list()`](https://developers.google.com/youtube/v3/docs/search/list) with keyword specification and channel type-of-result limit (this call is performed when no channel is retrieved by the previous API call)
+- [`channel list()`](https://developers.google.com/youtube/v3/docs/channels/list) with channelId specification;
+- [`channel list()`](https://developers.google.com/youtube/v3/docs/channels/list) with username specification;
+- [`search list()`](https://developers.google.com/youtube/v3/docs/search/list) with keyword specification and channel type-of-result limit (this call is performed when no channel is retrieved by the previous API call).
 
 To be able to perform analysis, it has been necessary to convert the topic list retrieved by the API to additional dummy variables, each of which take value 0 or 1, depending on the precence of a topic in a channel specification.
 
 The packages used to support this procedure are: `httr`, `rvest`, `parallel` (each of them is described in [Packages](#Packages) section below).
 
 ## Files description
-- data\dataset.csv contains data gathering output
-- data\dataset_adjusted.csv contains data manipulation ouput
-- data\topicIds.csv contains a list associating each topic ID to its topic
-- r_files\data_gathering.R contains the code used to perform data gathering (web scraping and API calls)
-- r_files\data_gathering_utils.R collects a few user-defined functions used in data_gathering.csv
-- r_files\data_manipulation.R contains the code used to perform data manipulation
-- r_files\utils.R collects a few user-defined functions used in app.R
+- data\dataset.csv contains data gathering output;
+- data\dataset_adjusted.csv contains data manipulation ouput;
+- data\topicIds.csv contains a list associating each topic ID to its topic;
+- r_files\data_gathering.R contains the code used to perform data gathering (web scraping and API calls);
+- r_files\data_gathering_utils.R collects a few user-defined functions used in data_gathering.R;
+- r_files\data_manipulation.R contains the code used to perform data manipulation;
+- r_files\utils.R collects a few user-defined functions used in app.R;
 - app.R contains the code used to run RYouTubeDashboard shiny app.
 
 ## Packages

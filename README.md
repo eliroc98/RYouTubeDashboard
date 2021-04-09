@@ -55,14 +55,14 @@ To be able to perform analysis, it has been necessary to convert the topic list 
 The packages used to support this procedure are: `httr`, `rvest`, `parallel` (each of them is described in [Packages](#Packages) section below).
 
 ## Files description
-- [data\dataset.csv](data//dataset.csv) contains data gathering output;
-- data\dataset_adjusted.csv contains data manipulation ouput;
-- data\topicIds.csv contains a list associating each topic ID to its topic;
-- r_files\data_gathering.R contains the code used to perform data gathering (web scraping and API calls);
-- r_files\data_gathering_utils.R collects a few user-defined functions used in data_gathering.R;
-- r_files\data_manipulation.R contains the code used to perform data manipulation;
-- r_files\utils.R collects a few user-defined functions used in app.R;
-- app.R contains the code used to run RYouTubeDashboard shiny app.
+- [dataset.csv](data//dataset.csv) contains data gathering output;
+- [dataset_adjusted.csv](data//dataset_adjusted.csv) contains data manipulation ouput;
+- [topicIds.csv](data//topicIds.csv) contains a list associating each topic ID to its topic;
+- [data_gathering.R](r_files//data_gathering.R) contains the code used to perform data gathering (web scraping and API calls);
+- [data_gathering_utils.R](r_files//data_gathering_utils.R) collects a few user-defined functions used in data_gathering.R;
+- [data_manipulation.R](r_files//data_manipulation.R) contains the code used to perform data manipulation;
+- [utils.R](r_files//utils.R) collects a few user-defined functions used in app.R;
+- [app.R](app.R) contains the code used to run RYouTubeDashboard shiny app.
 
 ## Packages
 ### shiny

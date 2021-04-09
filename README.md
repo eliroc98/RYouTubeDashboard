@@ -2,11 +2,27 @@
 R Shiny App visualizing information and insights about top 100 YouTube channels
 
 ## Index
+- [How to use RYouTubeDashboard](#How-to-use-RYouTubeDashboard)
 - [Insights overview](#Insights-overview)
 - [Dataset representation](#Dataset-representation)
 - [Data gathering and manipulation](#Data-gathering-and-manipulation)
 - [Files description](#Files-description)
 - [Packages](#Packages)
+
+## How to use RYouTubeDashboard
+
+### Insights Panel
+- Subscriber/View ratio plot: tweak the slider to select which channel to display. 
+- Channel Topics plot: choose which topic to include in the pie chart
+
+### Distribution Plot Panel
+- Subscriber Count Distribution plot: choose which subset to display and tweak the slider to select channels having a specific number of subribers
+
+### Summary Statistics Panel
+- Statistics Table: choose which subset to display, select which variable and statistic to show. Since bootstrapping technique is used, this operation could take some time (even if is is optimized using clusters)
+
+### Dataset Panel
+- Dataset Table: choose which subset to display, select which variable to show.
 
 ## Insights overview
 RYouTubeDashboard displays simple information about the most famous YouTube channels. 

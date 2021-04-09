@@ -55,7 +55,7 @@ To be able to perform analysis, it has been necessary to convert the topic list 
 The packages used to support this procedure are: `httr`, `rvest`, `parallel` (each of them is described in [Packages](#Packages) section below).
 
 ## Files description
-- data\dataset.csv contains data gathering output;
+- [data\dataset.csv](data//dataset.csv) contains data gathering output;
 - data\dataset_adjusted.csv contains data manipulation ouput;
 - data\topicIds.csv contains a list associating each topic ID to its topic;
 - r_files\data_gathering.R contains the code used to perform data gathering (web scraping and API calls);

@@ -3,6 +3,7 @@ library(parallel)
 #preparing for code optimization/bootstrapping
 cores <- detectCores()
 
+#function to exctract a statistic given an input specification
 which_stat <- function(x,stat){
   switch(stat,
          "median"={
@@ -16,6 +17,7 @@ which_stat <- function(x,stat){
          })
 }
 
+#function to compute statistics variances using bootstrapping technique
 summary_stats <- function(stat, variable){
   clusters <- makeCluster(cores-1)
   clusterExport(clusters,c("stat","variable","which_stat"),envir=environment())
@@ -27,9 +29,8 @@ summary_stats <- function(stat, variable){
   return(stat_boot)
 }
 
+#function to get the final table, which will be displayed in the shiny app
 summary_stats_table <- function(data,variables,stats,progress){
-  print(variables)
-  print(stats)
   rnames<-list()
   df <- data.frame()
   for(j in 1:length(stats)){

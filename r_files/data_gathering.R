@@ -9,7 +9,6 @@ cores <- detectCores()
 clusters <- makeCluster(cores-1)
 
 #web scraping to get 100 most subscribed channels
-
 url <- "https://socialblade.com/youtube/top/100/mostsubscribed"
 res <- read_html(url) %>%
   html_elements('a') %>%
@@ -20,7 +19,9 @@ clusterExport(clusters, c("res"))
 results <- parLapply(cl=clusters, 1:length(res), fun= function(x){
   strsplit(res[x],split="/")
 stopCluster(clusters)
- data <- data.frame(id = 0, 
+
+#prepare dataframe
+data <- data.frame(id = 0, 
                    snippet_title = "", 
                    snippet_description = "",
                    snippet_country="",
@@ -35,9 +36,12 @@ stopCluster(clusters)
                    topicDetails_topicCategories = "",
                    stringsAsFactors=FALSE) })
 
+#debugging indicators
 ch<-1
 username<-1
 search<-1
+
+#list to store channels with no channel list() results
 channels_to_search <- c()
 i_to_search <- 1
 
@@ -69,9 +73,6 @@ for (i in 1:length(results)){
           search<-search + 1
           channels_to_search[i_to_search] <- result[4]
           i_to_search <- i_to_search + 1
-          #channels <- APIsearchChannel(result[4])
-          #channel <- APIgetChannel(channels$items[[1]]$snippet$channelId)
-          #data <- rbind(data,getChannel(channel$items[[1]]))
         }
       }
     }
@@ -85,6 +86,7 @@ for(i in 1:length(channels_to_search)){
   data <- rbind(data,getChannel(channel$items[[1]]))
 }
 
+#removing first entry, which is used to initialise the dataframe
 data <- data[-1,]
 
 #saving results

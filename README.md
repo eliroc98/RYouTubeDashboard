@@ -76,7 +76,7 @@ The [`tidyverse`](https://www.tidyverse.org/= is an opinionated collection of R 
 Reference: https://www.tidyverse.org/ .
 ### parallel
 The R [`parallel`](https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781784394004/1/ch01lvl1sec09/the-r-parallel-package) package is now part of the core distribution of R. It includes a number of different mechanisms to enable you to exploit parallelism utilizing the multiple cores in your processor(s) as well as compute the resources distributed across a network as a cluster of machines.
-Referene: https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781784394004/1/ch01lvl1sec09/the-r-parallel-package .
+Reference: https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781784394004/1/ch01lvl1sec09/the-r-parallel-package .
 ### httr
 Useful tools for working with HTTP organised by HTTP verbs (GET(), POST(), etc). Configuration functions make it easy to control additional request components (authenticate(),
 add_headers() and so on).

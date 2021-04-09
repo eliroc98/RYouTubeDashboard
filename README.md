@@ -11,6 +11,9 @@ R Shiny App visualizing information and insights about top 100 YouTube channels
 
 ## How to use RYouTubeDashboard
 
+Type this command in your RStudio console: `runGitHub("RYouTubeDashboard", "eliroc98", "master")` .
+Please make sure to import `shiny` package before running the command above.
+
 ### Insights Panel
 - Subscriber/View ratio plot: tweak the slider to select which channel to display. 
 - Channel Topics plot: choose which topic to include in the pie chart

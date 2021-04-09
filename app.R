@@ -16,6 +16,7 @@ ui <- fluidPage(
     
     sidebarLayout(
         sidebarPanel(
+        #Distribution Plot Panel: sidebar
         conditionalPanel(
             condition="input.tabset==1",
             h3("Select Data"),
@@ -29,6 +30,7 @@ ui <- fluidPage(
                         h4("Number of Subscribers"),
                         min = 0, max = max_subs, value = c(0, max_subs)),
         ),
+        #Summary Statistics Panel: sidebar
         conditionalPanel(
             condition="input.tabset==2",
             h3("Select Data"),
@@ -45,6 +47,7 @@ ui <- fluidPage(
                                c("mean","median","variance"),
                                selected=c("mean")),
         ),
+        #Dataset Panel: sidebar
         conditionalPanel(
             condition="input.tabset==3",
             h3("Select variables"),
@@ -57,6 +60,7 @@ ui <- fluidPage(
             checkboxGroupInput("show_vars", "Variables to show:",
                                names(data), selected = c("snippet_title","statistics_viewCount","statistics_subscriberCount","statistics_videoCount")),
         ),
+        #Insights Panel: sidebar
         conditionalPanel(
             condition="input.tabset==4",
             h3("Subscriber/View ratio"),
@@ -98,6 +102,7 @@ ui <- fluidPage(
 
 
 server <- function(input, output) {
+    #Data for Subscriber Count Distribution plot
     data_to_show <- reactive({
         switch(input$radio_type, 
                "1"={to_show <- data},
@@ -107,6 +112,7 @@ server <- function(input, output) {
         return(to_show)
        })
     
+    #Data for Dataset Table
     data_to_show_variables <- reactive({
         switch(input$radio_type_3, 
                "1"={to_show <- data},
@@ -115,6 +121,7 @@ server <- function(input, output) {
         to_show <- to_show[,input$show_vars]
     })
     
+    #Data for Statistics Table
     statistics_to_show <- reactive({
         switch(input$radio_type_2, 
                "1"={to_show <- data},
@@ -127,7 +134,7 @@ server <- function(input, output) {
         return(table_sum)
     })
     
-    
+    #Subscriber Count Distribution plot
     output$distribution_plot<-renderPlot({
         dt <- data_to_show()
         ggplot(dt, aes(x=statistics_subscriberCount))+
@@ -139,14 +146,18 @@ server <- function(input, output) {
             labs(title="Subscriber Count Distribution", x="Subscriber count", y="Density")+
             theme(plot.title=element_text(size=20,face="bold"))
     })
+    
+    #Dataset Table
     output$data_table = DT::renderDataTable({
         data_to_show_variables()
     })
     
+    #Statistics Table
     output$summary_stats = DT::renderDataTable({
         statistics_to_show()
     })
     
+    #Subscriber/View ratio plot
     output$insights_plot = renderPlot({
         d<-data[data$youtube_playlist==0 & data$id!="UCRv76wLBC73jiP7LX4C3l8Q",]
         d<-d[input$slider_channels[1]:input$slider_channels[2],]
@@ -163,6 +174,7 @@ server <- function(input, output) {
             theme(plot.title=element_text(size=20,face="bold"))
     })
     
+    #Channel Topics plot
     output$topic_pie = renderPlot({
         d<-data %>%
             select(input$topics)

@@ -3,7 +3,7 @@ library(parallel)
 #preparing for code optimization/bootstrapping
 cores <- detectCores()
 
-#function to exctract a statistic given an input specification
+#function to extract a statistic given an input specification
 which_stat <- function(x,stat){
   switch(stat,
          "median"={

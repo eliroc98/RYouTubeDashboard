@@ -1,3 +1,4 @@
+#DO NOT RUN THIS FILE
 setwd("C:/Users/lizzy/Desktop/Universita/coding for data science and data management/R/project/YouTubeChannels")
 
 #import data: data acquisition is performed once because of the YouTube API limit quota

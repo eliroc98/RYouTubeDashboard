@@ -1,3 +1,5 @@
+#DO NOT RUN THIS FILE
+#DO NOT COPY THIS KEY
 key <- "AIzaSyCjL_9ED77w-E3z4GiQECmREv7-TdQJ6ds"
 
 #function to convert resulting NULLs in R NA

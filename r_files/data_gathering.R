@@ -1,3 +1,4 @@
+#DO NOT RUN THIS FILE
 setwd("C:/Users/lizzy/Desktop/Universita/coding for data science and data management/R/project/YouTubeChannels")
 source("r_files\\data_gathering_utils.R")
 library(httr)

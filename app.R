@@ -1,4 +1,4 @@
-setwd("C:/Users/lizzy/Desktop/Universita/coding for data science and data management/R/project/YouTubeChannels")
+#setwd("C:/Users/lizzy/Desktop/Universita/coding for data science and data management/R/project/YouTubeChannels")
 library(shiny)
 library('tidyverse')
 library(DT)

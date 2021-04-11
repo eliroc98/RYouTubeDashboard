@@ -75,11 +75,11 @@ The R package [`DT`](https://rstudio.github.io/DT/) provides an R interface to t
 Reference: https://rstudio.github.io/DT/ .
 Installation command: `install.packages("DT")` .
 ### bslib
-The [`bslib`](https://rstudio.github.io/bslib/index.html= R package provides tools for customizing Bootstrap themes directly from R, making it much easier to customize the appearance of Shiny apps & R Markdown documents. 
+The [`bslib`](https://rstudio.github.io/bslib/index.html=) R package provides tools for customizing Bootstrap themes directly from R, making it much easier to customize the appearance of Shiny apps & R Markdown documents. 
 Reference: https://rstudio.github.io/bslib/index.html .
 Installation command: `install.packages("bslib")` .
 ### tidyverse
-The [`tidyverse`](https://www.tidyverse.org/= is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures.
+The [`tidyverse`](https://www.tidyverse.org/=) is an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures.
 Reference: https://www.tidyverse.org/ .
 Installation command: `install.packages("tidyverse")` .
 ### parallel
@@ -87,8 +87,7 @@ The R [`parallel`](https://subscription.packtpub.com/book/big_data_and_business_
 Reference: https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781784394004/1/ch01lvl1sec09/the-r-parallel-package .
 Installation command: `install.packages("parallel")` (not necessary, since it is a base package).
 ### httr
-Useful tools for working with HTTP organised by HTTP verbs (GET(), POST(), etc). Configuration functions make it easy to control additional request components (authenticate(),
-add_headers() and so on).
+Useful tools for working with HTTP organised by HTTP verbs (GET(), POST(), etc). Configuration functions make it easy to control additional request components (authenticate(), add_headers() and so on).
 Reference: https://cran.r-project.org/web/packages/httr/httr.pdf .
 Installation command: `install.packages("httr")` .
 ### rvest

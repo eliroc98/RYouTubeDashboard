@@ -1,3 +1,27 @@
+#check if necessary packages are installed
+if(!("shiny" %in% rownames(installed.packages()))){
+    install.packages("shiny")
+}
+if(!("DT" %in% rownames(installed.packages()))){
+    install.packages("DT")
+}
+if(!("bslib" %in% rownames(installed.packages()))){
+    install.packages("bslib")
+}
+if(!("tidyverse" %in% rownames(installed.packages()))){
+    install.packages("tidyverse")
+}
+if(!("parallel" %in% rownames(installed.packages()))){
+    install.packages("parallel")
+}
+if(!("httr" %in% rownames(installed.packages()))){
+    install.packages("httr")
+}
+if(!("rvest" %in% rownames(installed.packages()))){
+    install.packages("rvest")
+}
+
+
 #setwd("C:/Users/lizzy/Desktop/Universita/coding for data science and data management/R/project/YouTubeChannels")
 library(shiny)
 library('tidyverse')

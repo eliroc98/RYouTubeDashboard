@@ -11,7 +11,7 @@ R Shiny App visualizing information and insights about top 100 YouTube channels.
 
 ## How to use RYouTubeDashboard
 
-1. Make sure to install the following packages: `shiny`, `DT`, `bslib`, `tidyverse`, `parallel`, `httr`, `rvest` (see Section [Packages](#Packages) to get a detailed list).
+1. Make sure to install the following packages: `shiny`, `DT`, `bslib`, `tidyverse`, `parallel`, `httr`, `rvest` (see Section [Packages](#Packages) to get a detailed list). install.packages(c("shiny","DT","bslib","tidyverse","httr","rvest"))
 3. Import `shiny` package;
 4. Type this command in your RStudio console: `runGitHub("RYouTubeDashboard", "eliroc98", "master")` .
 

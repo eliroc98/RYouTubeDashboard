@@ -21,13 +21,12 @@ if(!("rvest" %in% rownames(installed.packages()))){
     install.packages("rvest")
 }
 
-
 #setwd("C:/Users/lizzy/Desktop/Universita/coding for data science and data management/R/project/YouTubeChannels")
 library(shiny)
 library('tidyverse')
 library(DT)
 library(bslib)
-source("r_files\\utils.R")
+source("r_files/utils.R")
 
 #import data: data acquisition is performed once because of the YouTube API limit quota
 data <- read.csv(file = 'data/dataset_adjusted.csv')

@@ -186,6 +186,8 @@ server <- function(input, output) {
             df_sums <- rbind(df_sums,c(names(d)[i],sum(d[names(d)[i]])))
         }
         
+        df_sums<-df_sums[-1,]
+        
         ggplot(df_sums, aes(x = "", y = count, fill = topic)) +
             geom_bar(width = 1, stat = "identity") +
             coord_polar("y", start = 0)+

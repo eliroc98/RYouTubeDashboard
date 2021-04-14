@@ -32,7 +32,7 @@ R Shiny App visualizing information and insights about top 100 YouTube channels.
 RYouTubeDashboard displays simple information about the most famous YouTube channels. 
 You can get insights highlighting the subscriber/view ratio for each channel and topics characterizing them.
 You will notice that the number of views is always much larger than the number of subribers per channel: this is why many YouTubers always ask their viewers to subscribe to their channel.
-With respect to the topics characterizing each channel, it is evident that music is one of the most viewed topic, probably because people use YouTueb to listen to music.
+With respect to the topics characterizing each channel, it is evident that music is one of the most viewed topic, probably because people use YouTube to listen to music.
 
 To build this section, it has been necessary to use a few R packages: `shiny`, `DT`, `bslib`, `tidyverse` (each of them is described in [Packages](#Packages) section below).
 
@@ -44,12 +44,12 @@ To build this section, it has been necessary to use a few R packages: `shiny`, `
 
 ## Data gathering and manipulation
 To get the dataset, it is necessary to know which are the 100 most subscribed YouTube channels and their details.
-**The following procedure cannot be repeated every time the app starts because there are limits in [YouTube Data v3 API](https://developers.google.com/youtube/v3) quotas, thus it is not possible to run the data gathering procedure more than once in a day.**
+**The following procedure cannot be repeated every time the app is run because there are limits in [YouTube Data v3 API](https://developers.google.com/youtube/v3) quotas, thus it is not possible to run the data gathering procedure more than once in a day.**
 Web scraping techniques are used to get the 100 most subscribed YouTube channels. This step is performed analysing a ranking list in [this](https://socialblade.com/youtube/top/100/mostsubscribed) website.
 Extracting information about each item in the ranking list it is possible to know either the channel Id or the username associated with a channel or a keyword referring to a channel. Depending on the information provided, it is necessary to perform three different API calls to [YouTube Data v3 API](https://developers.google.com/youtube/v3):
-- [`channel list()`](https://developers.google.com/youtube/v3/docs/channels/list) with channelId specification;
-- [`channel list()`](https://developers.google.com/youtube/v3/docs/channels/list) with username specification;
-- [`search list()`](https://developers.google.com/youtube/v3/docs/search/list) with keyword specification and channel type-of-result limit (this call is performed when no channel is retrieved by the previous API call).
+- [`channel list()`](https://developers.google.com/youtube/v3/docs/channels/list) with *channelId* specification;
+- [`channel list()`](https://developers.google.com/youtube/v3/docs/channels/list) with *username* specification;
+- [`search list()`](https://developers.google.com/youtube/v3/docs/search/list) with keyword (*q*) specification and channel type-of-result limit (this call is performed when no channel is retrieved by the previous API call).
 
 To be able to perform analysis, it is necessary to convert the topic list retrieved by the API to additional dummy variables, each of which take value 0 or 1, depending on the precence of a topic in a channel specification. It is necessary to distinguish which channel is a YouTube-created playlist and which is not.
 

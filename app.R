@@ -96,6 +96,7 @@ ui <- fluidPage(
                                  value=2),
                         tabPanel("Dataset",
                                  DT::dataTableOutput("data_table"),
+                                 h5("Select at least 2 variables"),
                                  value=3)
             )
         )
@@ -151,7 +152,7 @@ server <- function(input, output) {
     
     #Dataset Table
     output$data_table = DT::renderDataTable({
-        if(length(input$show_vars)!=0){
+        if(length(input$show_vars)>2){
             data_to_show_variables()
         }
     })

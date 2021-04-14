@@ -23,7 +23,7 @@ R Shiny App visualizing information and insights about top 100 YouTube channels.
 - Subscriber Count Distribution plot: choose which subset to display and tweak the slider to select channels having a specific number of subscribers.
 
 ### Summary Statistics Panel
-- Statistics Table: choose which subset to display, select which variable and statistic to show. Since bootstrapping technique is used, this operation could take some time (even if is is optimized using clusters).
+- Statistics Table: choose which subset to display, select which variable and statistic to show. Since bootstrapping technique is used, this operation could take some time (even if it is optimized using clusters).
 
 ### Dataset Panel
 - Dataset Table: choose which subset to display, select which variable to show.

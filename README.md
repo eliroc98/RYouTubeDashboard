@@ -51,7 +51,7 @@ Extracting information about each item in the ranking list it is possible to kno
 - [`channel list()`](https://developers.google.com/youtube/v3/docs/channels/list) with *username* specification;
 - [`search list()`](https://developers.google.com/youtube/v3/docs/search/list) with keyword (*q*) specification and channel type-of-result limit (this call is performed when no channel is retrieved by the previous API call).
 
-To be able to perform analysis, it is necessary to convert the topic list retrieved by the API to additional dummy variables, each of which take value 0 or 1, depending on the precence of a topic in a channel specification. It is necessary to distinguish which channel is a YouTube-created playlist and which is not.
+To be able to perform analysis, it is necessary to convert the topic list retrieved by the API to additional dummy variables, each of which take value 0 or 1, depending on the presence of a topic in a channel specification. It is necessary to distinguish which channel is a YouTube-created playlist and which is not.
 
 The packages used to support this procedure are: `httr`, `rvest`, `parallel` (each of them is described in [Packages](#Packages) section below).
 

@@ -151,12 +151,16 @@ server <- function(input, output) {
     
     #Dataset Table
     output$data_table = DT::renderDataTable({
-        data_to_show_variables()
+        if(length(input$show_vars)!=0){
+            data_to_show_variables()
+        }
     })
     
     #Statistics Table
     output$summary_stats = DT::renderDataTable({
-        statistics_to_show()
+        if(length(input$stats_vars)!=0 & length(input$stats_to_show)!=0){
+            statistics_to_show()
+        }
     })
     
     #Subscriber/View ratio plot
@@ -178,24 +182,27 @@ server <- function(input, output) {
     
     #Channel Topics plot
     output$topic_pie = renderPlot({
-        d<-data %>%
-            select(input$topics)
-        print(names(d))
-        df_sums <- data.frame(topic="Music", count=sum(data$Music))
-        for(i in 1:ncol(d)){
-            df_sums <- rbind(df_sums,c(names(d)[i],sum(d[names(d)[i]])))
+        if(length(input$topics)!=0){
+            d<-data %>%
+                select(input$topics)
+            print(names(d))
+            df_sums <- data.frame(topic="Music", count=sum(data$Music))
+            for(i in 1:ncol(d)){
+                df_sums <- rbind(df_sums,c(names(d)[i],sum(d[names(d)[i]])))
+            }
+            
+            df_sums<-df_sums[-1,]
+            
+            ggplot(df_sums, aes(x = "", y = count, fill = topic)) +
+                geom_bar(width = 1, stat = "identity") +
+                coord_polar("y", start = 0)+
+                theme_void()+
+                labs(title="Channels Topics")+ 
+                theme(plot.title=element_text(size=20,face="bold"))
         }
-        
-        df_sums<-df_sums[-1,]
-        
-        ggplot(df_sums, aes(x = "", y = count, fill = topic)) +
-            geom_bar(width = 1, stat = "identity") +
-            coord_polar("y", start = 0)+
-            theme_void()+
-            labs(title="Channels Topics")+ 
-            theme(plot.title=element_text(size=20,face="bold"))
     })
     
+        
 }
 
 # Run the application 
